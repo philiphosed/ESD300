@@ -1,0 +1,71 @@
+FreeRTOS
+
+ Key features
+
+	preemtive scheduler
+
+	tickless mode
+
+	mem management static and dynamic
+
+	RTOS objects - Tasks, queues, timers, semaphores...etc
+ 
+	portable C
+
+
+use of API to connect to FREERTOS
+
+option for Command Line Interface that need to be mapped
+
+TCP/IP available
+
+BLE support 
+
+Instead of Thread they use Tasks
+
+Semaphore (Binary and Counting)
+
+Mutexes (logic)
+
+Event driven interupt
+
+Header File
+
+	FreeRTOSConfig.h
+
+      configUSE_PREEMPTION
+
+      all demos are great starting points
+
+      tasks.c and list.c are only ones required others optional
+
+BaseType_t
+
+	type for given architechture system
+
+	typically used for return types
+
+TickType_t
+	
+	used to hold tick values
+
+	measure time
+
+no plain int types
+
+	signed or unsigned bit
+
+lots of funny syntax
+
+one tab = 4 spaces
+
+pdTrue 1
+
+
+
+
+	
+
+
+
+
