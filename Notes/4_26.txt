@@ -1,0 +1,111 @@
+ATMEL and other chip makers have other premade software that can include FREERTOS config
+
+https://start.atmel.com/
+
+Heap Memory Management
+
+
+	Static and Dynamic Allocated Memory
+
+	If static no need for memory manager
+
+	
+FreeRTOS Kernel objects can be dynamically allocated at run time
+
+FreeRTOS does not use C lang malloc and free but rather specific calls
+
+
+	malloc and free can be large to implement and not thread safe, not deterministic
+
+	suffer from fragmentation
+
+	diffcult to debug
+
+FreeRTOS does mem allocation as part of portable layer(pointer to void)
+
+	pvPortMalloc()
+	vPortFree()
+
+	Public Functions
+
+Have 5 implementations and for each heap (1-5)
+
+Can define heap size
+
+Each task requires two blocks of memory when allocated
+
+	TCB - Task Control Block
+
+	Stack
+
+heap_1.c
+
+	simplest allocation scheme
+
+	some safety critical prohibit dynamic memory allocation so heap_1.c is best choice
+
+heap_2.c
+
+	we dont cover it and dont use!
+
+	use heap_4.c!
+
+heap_3.c
+	
+	heap_3 uses malloc() and free()
+
+	heapsize not determined by config
+
+	makes malloc and free thread safe by suspending scheduler, thread cant change
+
+heap_4.c
+
+	uses first-fit allocate memory
+
+	minimize fragmentation
+
+	will combine adjacent free blocks of mem into single larger block
+
+	result pvPortMalloc() uses first free block of right size it will fit it
+
+heap_5.c
+
+	first-fit like heap_4.c
+	
+	however not limited to single statically defined array
+
+	can allocate multiple and seperate memory spaces
+
+	
+vPortDefineHeapRegions()
+
+	void
+
+	for heap_5.c
+
+	each separate memory region can be defined
+
+	start address and size in bytes
+
+xPortGetFreeHeapSize()
+	returns free bytes in heap
+
+xPortGetMinimumEverFreeHeapSize()
+	Heap 4 and 5 get minimum size it ever was
+
+Malloc failed hook function
+
+	if pvPortMalloc() cannot return block of RAM it will return NULL
+
+	set the hook to 1
+
+	can use the hook if MALLOC failed for debuging!
+
+
+
+
+
+
+
+
+
